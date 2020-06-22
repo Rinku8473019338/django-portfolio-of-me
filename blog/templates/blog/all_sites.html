@@ -1,0 +1,23 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<h1>My Blog</h1>
+<br>
+
+<h2>I have written {{ blogs.count }} blog{{ blogs.count | pluralize }}</h2>
+
+{% for blog in blogs %}
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+<h2><a href="{% url 'blog:detail' blog.id %}"<h2>{{ blog.title }}</h2></a></h2>
+<h5>{{ blog.date|date:'M d, Y'|upper }}</h5>
+<p>{{ blog.description|striptags|truncatechars:50 }}</p>
+
+  </div>
+</div>
+
+{%endfor%}
+<center> <a href = "{% url 'home' %}"class="btn btn-success">Return to Home</a> </center>
+
+{% endblock %}
